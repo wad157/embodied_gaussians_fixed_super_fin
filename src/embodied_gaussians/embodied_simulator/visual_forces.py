@@ -8,19 +8,30 @@ from embodied_gaussians.embodied_simulator.adam import Adam
 from embodied_gaussians.embodied_simulator.gaussians import GaussianModel, GaussianState
 
 
-
 @dataclass
 class VisualForcesSettings:
+    # 每个 physics step 内，视觉优化要迭代多少次。
+    # 次数越大，视觉对齐通常越强，但代价是更慢。
     iterations: int = 3
+    # 下面这些学习率控制“允许视觉误差推动哪些量变化”。
+    # 常见做法是只让 means / quats 变化，把颜色、透明度、尺度固定住，
+    # 这样得到的是“位姿修正力”，而不是把外观直接拟合到图像里。
     lr_means: float = 0.0015
     lr_quats: float = 0.001
     lr_color: float = 0.000
     lr_opacity: float = 0.0000
     lr_scale: float = 0.0000
+    # 把“高斯位姿偏差”转成“物理受力/力矩”时使用的比例系数。
     kp: float = 4.0
 
 
 class VisualForces:
+    # 这一类维护的是“视觉优化过程中的临时变量”，不是场景真值本身。
+    # 典型流程是：
+    # 1. 从当前 gaussian_state 拷一份 means / quats 到这里
+    # 2. 用渲染误差对这份拷贝做若干步梯度优化
+    # 3. 把优化前后差值转成 forces / moments
+    # 4. 再把这些力施加回物理系统
     means: torch.Tensor  # (n_gaussians, 3)
     quats: torch.Tensor  # (n_gaussians, 4) (w, x, y, z)
     forces: torch.Tensor  # (n_gaussians, 3)
@@ -32,6 +43,7 @@ class VisualForces:
         gaussian_state: GaussianState,
         bodies_affected_by_visual_forces: list[int],
     ):
+        # 为每个 Gaussian 分配一份“可求梯度的临时位姿副本”和最终输出的力/力矩。
         num_gaussians = gaussian_model.means.shape[0]
         device = gaussian_model.means.device
         self.device = device
@@ -46,18 +58,25 @@ class VisualForces:
         self.means.requires_grad = True
         self.quats.requires_grad = True
 
+        # 不是所有 Gaussian 都一定允许被视觉力驱动。
+        # 这里先把“允许受视觉力影响的 body id 列表”转成 mask，
+        # 后面 step() 时会把其他 Gaussian 的梯度清零。
         bodies_affected_by_visual_forces = (
             torch.tensor(bodies_affected_by_visual_forces).int().cuda()
         )
         body_ids = gaussian_model.body_ids
-        # find body ids that are affected by visual forces
+        # 找出哪些 Gaussian 属于“允许受视觉力影响”的刚体。
         mask = torch.zeros_like(body_ids, dtype=torch.bool)
         for b in bodies_affected_by_visual_forces:
             mask = mask | (body_ids == b)
         self._gaussians_not_involved_in_visual_forces = ~mask
 
+        # 预计算“每个 body 在 Gaussian 数组中对应的连续段”，
+        # 这样后面可以把 per-Gaussian 的力快速聚合成 per-body 的总力。
         self._initialize(gaussian_model.body_ids)
 
+        # 这里不是标准 torch.optim.Adam，而是项目里包过的 Warp 版本 Adam。
+        # 它直接吃 Warp/Torch 桥接后的向量数组，便于和后面的 kernel 配合。
         self.optimizer = Adam(
             [
                 wp.from_torch(self.means, dtype=wp.vec3),
@@ -68,14 +87,17 @@ class VisualForces:
         self.gaussian_state = gaussian_state
 
     def set_learnings_rates(self, lrs):
+        # 每个 step 前根据 VisualForcesSettings 动态更新学习率。
         self.optimizer.lrs = lrs
 
     def zero_grad(self):
+        # 每轮反传前都要清空梯度缓存。
         self.means.grad.zero_()
         self.quats.grad.zero_()
 
     def step(self):
-        # zero out non-visual forces
+        # 只允许指定 body 上的 Gaussian 通过视觉误差更新。
+        # 其他 Gaussian 即使算出了梯度，也在这里强制清零。
         self.means.grad[self._gaussians_not_involved_in_visual_forces, :] = 0
         self.quats.grad[self._gaussians_not_involved_in_visual_forces, :] = 0
         self.optimizer.step(
@@ -86,7 +108,11 @@ class VisualForces:
         )
 
     def _initialize(self, body_ids: torch.Tensor):
-        # print(body_ids.tolist())
+        # body_ids 通常已经按 body 分组排列。
+        # 这里把它转换成若干连续段：
+        # [start_i, end_i) 表示第 i 个 body 对应哪些 Gaussian。
+        #
+        # 后面 pysegreduce 会利用这些分段，把 per-Gaussian 力聚合成 per-body 力。
         if len(body_ids) == 0:
             return
         starts = body_ids[1:] - body_ids[:-1] != 0
@@ -107,6 +133,7 @@ class VisualForces:
 
         self._num_bodies = len(self._start_inds)
 
+        # 聚合后的总力 / 总力矩，每个 body 一条。
         self._total_forces = torch.zeros(
             (self._num_bodies, 3), device=self.device, dtype=torch.float32
         )

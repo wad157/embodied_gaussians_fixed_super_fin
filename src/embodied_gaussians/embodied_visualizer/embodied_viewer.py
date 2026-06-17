@@ -308,7 +308,7 @@ class EmbodiedViewer(SimulationViewer):
                     texture_fmt=gl.GL_BGR,
                 )
                 self.cameras[name].matrix = pyglet.math.Mat4(
-                    frames.X_WCs_cpu[i].T.flatten().numpy()
+                    *frames.X_WCs_cpu[i].T.flatten().numpy().tolist()
                 )
                 self.cameras[name].timestamp = -1.0
             camera = self.cameras[name]
@@ -345,7 +345,7 @@ class EmbodiedViewer(SimulationViewer):
                 X_WC = X_WCs[j, i]
                 t_WC = self.env_xforms_numpy[j][:3]
                 X_WC[:3, 3] += t_WC
-                camera.matrix = pyglet.math.Mat4(X_WC.T.flatten())
+                camera.matrix = pyglet.math.Mat4(*X_WC.T.flatten().tolist())
                 if camera.timestamp != cameras.last_rendered_at:
                     camera.update_image(cameras.rendered_images[j, i])
                     camera.timestamp = cameras.last_rendered_at
@@ -394,11 +394,15 @@ class EmbodiedViewer(SimulationViewer):
             background=torch.tensor([1.0, 1.0, 1.0]).cuda().unsqueeze(0),
         )
 
-        ids = meta["gaussian_ids"]
+        ss = self.env.sim
+        ids = meta.get("gaussian_ids")
+        if ids is None:
+            ids = torch.arange(
+                ss.visual_forces.means.shape[0], device=ss.visual_forces.means.device
+            )
         if len(ids) == 0:
             return
 
-        ss = self.env.sim
         with torch.no_grad():
             if s.draw_visual_forces_gaussians_meshes:
                 self.mesh_ellipse_renderer.update(
@@ -413,7 +417,7 @@ class EmbodiedViewer(SimulationViewer):
                     positions=ss.visual_forces.means[ids],
                     colors=ss.gaussian_state.colors[ids],
                     opacity=ss.gaussian_state.opacities[ids].unsqueeze(1),
-                    conics=meta["conics"],
+                    conics=meta["conics"].reshape(-1, 3),
                 )
                 self.ellipse_renderer.draw(3.0)
 
@@ -456,7 +460,11 @@ class EmbodiedViewer(SimulationViewer):
             far_plane=s.far_plane,
         )
 
-        ids = meta["gaussian_ids"]
+        ids = meta.get("gaussian_ids")
+        if ids is None:
+            ids = torch.arange(
+                sim.gaussian_state.means.shape[0], device=sim.gaussian_state.means.device
+            )
         if len(ids) == 0:
             return
 
@@ -475,7 +483,7 @@ class EmbodiedViewer(SimulationViewer):
                     positions=sim.gaussian_state.means[ids],
                     colors=sim.gaussian_state.colors[ids],
                     opacity=sim.gaussian_state.opacities[ids].unsqueeze(1),
-                    conics=meta["conics"],
+                    conics=meta["conics"].reshape(-1, 3),
                 )
                 self.ellipse_renderer.draw(3.0)
             if s.draw_gaussian_render:
