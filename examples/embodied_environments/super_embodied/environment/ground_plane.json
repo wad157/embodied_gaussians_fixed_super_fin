@@ -1,0 +1,9 @@
+{
+  "plane": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+  ],
+  "coordinate_frame": "right_handed_table_world_z_up_m"
+}
