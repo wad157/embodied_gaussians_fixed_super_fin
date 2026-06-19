@@ -1,0 +1,49 @@
+{
+  "source_xacro": "data/super/dvrk_model/urdf/Classic/PSM1.urdf.xacro",
+  "base_origin_from_previous_right_handed_urdf": {
+    "rpy": "-0.238342 -0.478597 2.466444",
+    "xyz": "0.132451 -0.155286 0.139112"
+  },
+  "removed_old_outputs": [],
+  "link_count": 18,
+  "joint_count": 17,
+  "joint_names": [
+    "fixed",
+    "yaw",
+    "pitch",
+    "pitch_1",
+    "pitch_2",
+    "pitch_3",
+    "pitch_4",
+    "pitch_5",
+    "insertion",
+    "roll",
+    "roll_shaft",
+    "wrist_pitch",
+    "wrist_yaw",
+    "jaw",
+    "jaw_mimic_1",
+    "jaw_mimic_2",
+    "tool_tip"
+  ],
+  "visual_link_count": 15,
+  "collision_link_count": 17,
+  "mimic_joint_count": 7,
+  "mimic_joint_names": [
+    "jaw_mimic_1",
+    "jaw_mimic_2",
+    "pitch_1",
+    "pitch_2",
+    "pitch_3",
+    "pitch_4",
+    "pitch_5"
+  ],
+  "unreachable_links_from_world": [],
+  "converted_mesh_count": 13,
+  "limit_changes": [
+    "roll: [-3.5, 3.5]",
+    "jaw: [-1.2, 1.6]"
+  ],
+  "urdf": "data/super/psm_robot/psm.urdf",
+  "mimic_map": "data/super/psm_robot/psm_mimic_map.json"
+}

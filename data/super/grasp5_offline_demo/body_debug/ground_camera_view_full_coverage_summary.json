@@ -1,0 +1,30 @@
+{
+  "method": "uniform image pixels -> camera rays -> z=0 table-world plane",
+  "ground_points": 2000,
+  "pixel_grid": [
+    50,
+    40
+  ],
+  "z_percentiles": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "xy_bounds_min": [
+    -0.09687905844679186,
+    -0.05392077756744804
+  ],
+  "xy_bounds_max": [
+    0.07189007647307107,
+    0.06889187234023143
+  ],
+  "projected_uv_bounds": [
+    0.4999999999997726,
+    0.4999999999997726,
+    958.5000000000002,
+    538.5000000000001
+  ],
+  "debug_overlay": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_offline_demo/body_debug/ground_camera_view_full_coverage_overlay.png"
+}

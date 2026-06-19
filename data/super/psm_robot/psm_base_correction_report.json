@@ -1,0 +1,171 @@
+{
+  "method": "weighted_rigid_fit_from_urdf_fk_identity_base_to_lnd_table_world_frame0",
+  "frame_index": 0,
+  "source_files": {
+    "urdf": "data/super/psm_robot/psm.urdf",
+    "robots": "data/super/grasp5_offline_demo/robots.json",
+    "mimic_map": "data/super/psm_robot/psm_mimic_map.json",
+    "lnd_motion": "data/super/grasp5_offline_demo/instruments/psm1_lnd_motion.json"
+  },
+  "new_fixed_joint_origin": {
+    "xyz": [
+      0.09942937148648505,
+      -0.048423170752136875,
+      0.09934317315915787
+    ],
+    "rpy": [
+      0.7333429566410179,
+      0.4921813643690013,
+      2.0225687380903814
+    ],
+    "matrix": [
+      [
+        -0.38474285754013227,
+        -0.8064912469482496,
+        0.44893741453315184,
+        0.09942937148648505
+      ],
+      [
+        0.7928870946263248,
+        -0.03976791888530285,
+        0.6080695419132233,
+        -0.048423170752136875
+      ],
+      [
+        -0.4725494564031148,
+        0.5899070954170574,
+        0.6547569243847154,
+        0.09934317315915787
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "anchors": [
+    {
+      "name": "base_origin_to_lnd_base",
+      "src_link": "PSM1_outer_pitch_link",
+      "src": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dst": [
+        0.09912317013245345,
+        -0.048957919473012194,
+        0.09897412545100431
+      ],
+      "weight": 0.7,
+      "pred": [
+        0.09942937148648505,
+        -0.048423170752136875,
+        0.09934317315915787
+      ],
+      "residual_m": 0.0007182699176367978
+    },
+    {
+      "name": "tool_main_to_lnd_insertion_link3",
+      "src_link": "PSM1_tool_main_link",
+      "src": [
+        -0.2135461753908034,
+        -0.09159132993350845,
+        0.19108121461199132
+      ],
+      "dst": [
+        0.34094529969209975,
+        -0.0977279533613291,
+        0.2711557527213967
+      ],
+      "weight": 1.3,
+      "pred": [
+        0.3412408495645945,
+        -0.09790811410958591,
+        0.271335675237628
+      ],
+      "residual_m": 0.00039010220992854327
+    },
+    {
+      "name": "wrist_to_lnd_wrist_link4",
+      "src_link": "PSM1_tool_wrist_link",
+      "src": [
+        0.08189063472462588,
+        0.035122793054864945,
+        -0.07327283257493403
+      ],
+      "dst": [
+        0.006390936424026911,
+        -0.03025593306368408,
+        0.03294713722866731
+      ],
+      "weight": 1.5,
+      "pred": [
+        0.006701393497922564,
+        -0.029444881431978223,
+        0.03338908857173967
+      ],
+      "residual_m": 0.0009744276954541302
+    },
+    {
+      "name": "distal_shaft_to_lnd_distal",
+      "src_link": "PSM1_tool_wrist_sca_shaft_link",
+      "src": [
+        0.088251357790762,
+        0.038116039907889115,
+        -0.07905138562503097
+      ],
+      "dst": [
+        -0.002559613937435459,
+        -0.028782371183516665,
+        0.026490332848573266
+      ],
+      "weight": 1.5,
+      "pred": [
+        -0.0007540853235366435,
+        -0.028034343504495365,
+        0.028365522278964633
+      ],
+      "residual_m": 0.0027084708571518488
+    },
+    {
+      "name": "tool_tip_to_lnd_distal",
+      "src_link": "PSM1_tool_tip_link",
+      "src": [
+        0.09094047659846088,
+        0.039496207611984205,
+        -0.08879324259106434
+      ],
+      "dst": [
+        -0.002559613937435459,
+        -0.028782371183516665,
+        0.026490332848573266
+      ],
+      "weight": 0.8,
+      "pred": [
+        -0.0072752818296317745,
+        -0.03188078880597862,
+        0.02153040306481846
+      ],
+      "residual_m": 0.0075125640691079635
+    }
+  ],
+  "residual_summary_m": {
+    "mean": 0.002460766949855857,
+    "max": 0.0075125640691079635,
+    "per_anchor": [
+      0.0007182699176367978,
+      0.00039010220992854327,
+      0.0009744276954541302,
+      0.0027084708571518488,
+      0.0075125640691079635
+    ]
+  },
+  "notes": [
+    "grip_far is not used because its z value is below the fitted table plane in frame0.",
+    "This correction only changes the URDF fixed root pose; joint values and mimic joints are unchanged.",
+    "The target frame is the fin-local right-handed table-world frame with z=0 table plane."
+  ]
+}

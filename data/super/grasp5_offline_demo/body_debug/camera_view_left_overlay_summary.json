@@ -1,0 +1,38 @@
+{
+  "image": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_native/rgb/000000-left-540.png",
+  "output_overlay": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_offline_demo/body_debug/camera_view_left_overlay_540.png",
+  "output_original_vs_overlay": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_offline_demo/body_debug/camera_view_left_original_vs_overlay_540.png",
+  "K_used": [
+    [
+      871.3942965013008,
+      0.0,
+      430.20975494384766
+    ],
+    [
+      0.0,
+      871.3942965013008,
+      341.1449337005615
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "tissue_visible_points": 1962,
+  "ground_visible_points": 2000,
+  "tissue_total_points": 1963,
+  "ground_total_points": 2000,
+  "tissue_uv_bounds": [
+    -1.7053025658242404e-13,
+    102.99999999999991,
+    825.0000000000001,
+    539.0
+  ],
+  "ground_uv_bounds": [
+    0.4999999999997726,
+    0.4999999999997726,
+    958.5000000000002,
+    538.5000000000001
+  ]
+}

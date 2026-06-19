@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-06-18T12:27:15.982936",
+  "image": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_native/rgb/000000-left-540.png",
+  "depth": "/home/hsieh/data0/wad/depth/000000.npy",
+  "shape": [
+    540,
+    960
+  ],
+  "modes": {
+    "tissue": {
+      "points": [
+        [
+          385,
+          277
+        ],
+        [
+          753,
+          353
+        ]
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "saved": true
+    },
+    "ground": {
+      "points": [
+        [
+          753,
+          152
+        ]
+      ],
+      "labels": [
+        1
+      ],
+      "saved": true
+    }
+  }
+}

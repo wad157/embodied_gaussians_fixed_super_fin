@@ -1,0 +1,54 @@
+{
+  "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_offline_demo/bodies/ground.json": {
+    "points": 2000,
+    "z_before_percentiles_m": [
+      -0.022122418122986355,
+      -0.02136610842927788,
+      -0.015163197546956714,
+      -0.0015934293228029232,
+      0.01264334464310079,
+      0.040516036088525685,
+      0.04305067063257816
+    ],
+    "z_after_percentiles_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "X_WB_after_translation": [
+      -1.3686968225457009e-18,
+      -9.502815201400949e-18,
+      0.0
+    ]
+  },
+  "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/examples/embodied_environments/super_embodied/objects/ground.json": {
+    "points": 2000,
+    "z_before_percentiles_m": [
+      -0.022122418122986355,
+      -0.02136610842927788,
+      -0.015163197546956714,
+      -0.0015934293228029232,
+      0.01264334464310079,
+      0.040516036088525685,
+      0.04305067063257816
+    ],
+    "z_after_percentiles_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "X_WB_after_translation": [
+      -1.3686968225457009e-18,
+      -9.502815201400949e-18,
+      0.0
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "ground_points": 2000,
+  "xy_min": [
+    -0.08701297741951547,
+    -0.05396959118676206
+  ],
+  "xy_max": [
+    0.06538302929728079,
+    0.03554918302384888
+  ],
+  "tissue_bounds_xy_min": [
+    -0.05201297741951546,
+    -0.057666542441475954
+  ],
+  "tissue_bounds_xy_max": [
+    0.030383029297280782,
+    0.000549183023848876
+  ],
+  "image_z0_bounds_xy_min": [
+    -0.09708403181467651,
+    -0.05396959118676206
+  ],
+  "image_z0_bounds_xy_max": [
+    0.07201048519555805,
+    0.06913913117987018
+  ],
+  "z_percentiles": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "overlay": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_offline_demo/body_debug/uniform_ground_grid_camera_overlay.png"
+}

@@ -1,0 +1,35 @@
+{
+  "output": "data/super/grasp5_offline_demo/body_debug/table_world_scene_with_psm.ply",
+  "frame": "right_handed_table_world_z_up_m",
+  "points_total": 204563,
+  "components": {
+    "ground": 2000,
+    "tissue": 1963,
+    "psm": 200390,
+    "camera_markers": 210
+  },
+  "colors": {
+    "ground": [
+      44,
+      162,
+      95
+    ],
+    "tissue": [
+      222,
+      45,
+      38
+    ],
+    "psm": "kept from psm_frame0_right_handed_dense.ply",
+    "camera_markers": "blue, with RGB local axes"
+  },
+  "bounds_min_m": [
+    -0.09687905844679186,
+    -0.186552,
+    -0.485334
+  ],
+  "bounds_max_m": [
+    0.764735,
+    0.076527,
+    0.410762
+  ]
+}

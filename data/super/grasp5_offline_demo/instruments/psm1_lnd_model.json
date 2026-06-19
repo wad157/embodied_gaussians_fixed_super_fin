@@ -1,0 +1,545 @@
+{
+  "name": "psm1_lnd",
+  "type": "fin_local_super_lnd_psm_kinematic_model",
+  "generated_at": "2026-06-19",
+  "source_files": {
+    "lnd": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5/LND.json",
+    "handeye": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5/handeye.yaml",
+    "camera_calibration": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5/camera_calibration.yaml",
+    "native_calibration": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_native/calib_rectified.json",
+    "robots": "/home/hsieh/data0/wad/embodied_gaussians_fixed_super_fin/data/super/grasp5_offline_demo/robots.json"
+  },
+  "joint_names": [
+    "outer_yaw",
+    "outer_pitch",
+    "outer_insertion",
+    "outer_roll",
+    "outer_wrist_pitch",
+    "outer_wrist_yaw",
+    "jaw"
+  ],
+  "dh_convention": "Craig modified DH: Rx(alpha) Tx(A) Rz(theta) Tz(D)",
+  "jaw_model": "link7/link8 attached to link6 with +/-0.5*jaw z-rotation, matching psm_mimic_map.json intent",
+  "default_projection_space": "raw_camera_tuned",
+  "spaces_warning": "raw_camera_tuned/projection_space is currently the only historically visible PSM image space; strict rectified/table alignment remains under diagnosis.",
+  "dh_params": [
+    {
+      "convention": "modified",
+      "alpha": 1.5708,
+      "A": 0.0,
+      "theta": 0.0,
+      "D": 0.0,
+      "type": "revolute",
+      "mode": "active",
+      "offset": 1.5708
+    },
+    {
+      "convention": "modified",
+      "alpha": -1.5708,
+      "A": 0.0,
+      "theta": 0.0,
+      "D": 0.0,
+      "type": "revolute",
+      "mode": "active",
+      "offset": -1.5708
+    },
+    {
+      "convention": "modified",
+      "alpha": 1.5708,
+      "A": 0.0,
+      "theta": 0.0,
+      "D": 0.0,
+      "type": "prismatic",
+      "mode": "active",
+      "offset": -0.4318
+    },
+    {
+      "convention": "modified",
+      "alpha": 0.0,
+      "A": 0.0,
+      "theta": 0.0,
+      "D": 0.4162,
+      "type": "revolute",
+      "mode": "active",
+      "offset": 0.0
+    },
+    {
+      "convention": "modified",
+      "alpha": -1.5708,
+      "A": 0.0,
+      "theta": 0.0,
+      "D": 0.0,
+      "type": "revolute",
+      "mode": "active",
+      "offset": -1.5708
+    },
+    {
+      "convention": "modified",
+      "alpha": -1.5708,
+      "A": 0.0091,
+      "theta": 0.0,
+      "D": 0.0,
+      "type": "revolute",
+      "mode": "active",
+      "offset": -1.5708
+    }
+  ],
+  "point_features": [
+    {
+      "name": "grip_far",
+      "link": 8,
+      "position": [
+        0.0005,
+        0.09,
+        0
+      ]
+    },
+    {
+      "name": "grip_mid",
+      "link": 7,
+      "position": [
+        -0.0005,
+        0.0065,
+        0
+      ]
+    },
+    {
+      "name": "roll_front",
+      "link": 4,
+      "position": [
+        -0.004,
+        0,
+        -0.00625
+      ]
+    },
+    {
+      "name": "roll_back",
+      "link": 4,
+      "position": [
+        0.004,
+        0,
+        -0.00625
+      ]
+    },
+    {
+      "name": "roll_right",
+      "link": 4,
+      "position": [
+        0,
+        0.004,
+        0
+      ]
+    },
+    {
+      "name": "roll_left",
+      "link": 4,
+      "position": [
+        0,
+        -0.004,
+        0
+      ]
+    },
+    {
+      "name": "pitch_front",
+      "link": 5,
+      "position": [
+        0.00275,
+        -0.00275,
+        -0.00025
+      ]
+    },
+    {
+      "name": "pitch_back",
+      "link": 5,
+      "position": [
+        0.00275,
+        0.00275,
+        0.00025
+      ]
+    },
+    {
+      "name": "pitch_right",
+      "link": 5,
+      "position": [
+        0.0035,
+        -0.0015,
+        0.003
+      ]
+    },
+    {
+      "name": "pitch_left",
+      "link": 5,
+      "position": [
+        0.0035,
+        0.0015,
+        -0.003
+      ]
+    },
+    {
+      "name": "ee_front",
+      "link": 6,
+      "position": [
+        0.0,
+        0.0,
+        -0.00275
+      ]
+    },
+    {
+      "name": "ee_back",
+      "link": 6,
+      "position": [
+        0.0,
+        0.0,
+        0.00275
+      ]
+    }
+  ],
+  "skeleton_structure": [
+    {
+      "link1": 4,
+      "position1": [
+        0,
+        0,
+        -0.05
+      ],
+      "link2": 4,
+      "position2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "link1": 4,
+      "position1": [
+        0,
+        0,
+        0
+      ],
+      "link2": 5,
+      "position2": [
+        0.0,
+        0,
+        0
+      ]
+    },
+    {
+      "link1": 5,
+      "position1": [
+        0,
+        0,
+        0
+      ],
+      "link2": 6,
+      "position2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "link1": 6,
+      "position1": [
+        0,
+        0,
+        0
+      ],
+      "link2": 7,
+      "position2": [
+        0,
+        0.0102,
+        0
+      ]
+    },
+    {
+      "link1": 6,
+      "position1": [
+        0,
+        0,
+        0
+      ],
+      "link2": 8,
+      "position2": [
+        0,
+        0.0102,
+        0
+      ]
+    }
+  ],
+  "shaft_features": [
+    {
+      "name": "insertion_shaft",
+      "link": 3,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "radius": 0.004
+    }
+  ],
+  "K_rectified_full": [
+    [
+      1742.7885930026016,
+      0.0,
+      860.4195098876953
+    ],
+    [
+      0.0,
+      1742.7885930026016,
+      682.289867401123
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "K_left_rect_half": [
+    [
+      871.3942965013008,
+      0.0,
+      430.20975494384766
+    ],
+    [
+      0.0,
+      871.3942965013008,
+      341.1449337005615
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "R1_raw_to_rectified_left": [
+    [
+      0.9987597352703238,
+      0.037498148842598895,
+      0.03275484752110888
+    ],
+    [
+      -0.037300560121281474,
+      0.999282144850663,
+      -0.006622929661203377
+    ],
+    [
+      -0.032979681887359974,
+      0.005392941315912931,
+      0.9994414724067496
+    ]
+  ],
+  "T_raw_camera_psm_base": [
+    [
+      -0.7205188338690016,
+      -0.6933642791329785,
+      0.00992907158092704,
+      0.09380599975585938
+    ],
+    [
+      -0.4539495882087092,
+      0.460807033186566,
+      -0.7626182855996426,
+      -0.05644304656982422
+    ],
+    [
+      0.5241968918309201,
+      -0.5539881357828884,
+      -0.646772575181263,
+      0.0007621345520019532
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_raw_camera_tuned_psm_base": [
+    [
+      -0.7143037333148459,
+      -0.6997383695291137,
+      0.011678646377512173,
+      0.09318802215017528
+    ],
+    [
+      -0.4557737329148853,
+      0.4524677369657859,
+      -0.766513699414362,
+      -0.055942829996617593
+    ],
+    [
+      0.5310748355526782,
+      -0.5528464173835239,
+      -0.6421217624632402,
+      -0.00047044324199758524
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_rectified_from_raw_camera": [
+    [
+      0.9987597352703238,
+      0.037498148842598895,
+      0.03275484752110888,
+      0.0
+    ],
+    [
+      -0.037300560121281474,
+      0.999282144850663,
+      -0.006622929661203377,
+      0.0
+    ],
+    [
+      -0.032979681887359974,
+      0.005392941315912931,
+      0.9994414724067496,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_rectified_camera_psm_base": [
+    [
+      -0.7194774797350121,
+      -0.6933707100706781,
+      -0.039864954160753405,
+      0.09159810932256654
+    ],
+    [
+      -0.4302196812212455,
+      0.49000814092112227,
+      -0.7581576667955784,
+      -0.05990659253536043
+    ],
+    [
+      0.5452184718477953,
+      -0.5283266794769209,
+      -0.6508515481343234,
+      -0.0026363771900915216
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_rectified_camera_tuned_psm_base": [
+    [
+      -0.7131132036027028,
+      -0.7000122062661573,
+      -0.0381112834456802,
+      0.0909592824705258
+    ],
+    [
+      -0.43231989532511417,
+      0.4819050267284637,
+      -0.7621463463928176,
+      -0.05937552085833062
+    ],
+    [
+      0.5518777645036738,
+      -0.5270203566203351,
+      -0.6462820411818682,
+      -0.003845188211908759
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_right_handed_table_from_rectified_camera": [
+    [
+      0.9928680720202214,
+      -0.04328001927673711,
+      -0.1110847941626032,
+      0.004126292393479907
+    ],
+    [
+      0.04328001927673711,
+      -0.7373557228976826,
+      0.6741167390278533,
+      -0.09392373105693781
+    ],
+    [
+      -0.1110847941626032,
+      -0.6741167390278533,
+      -0.730223794917904,
+      0.07127037073120226
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_right_handed_table_from_rectified_psm_base": [
+    [
+      -0.7562917837888437,
+      -0.650944141447685,
+      0.06553214850986987,
+      0.09795675049450434
+    ],
+    [
+      0.6536268431593777,
+      -0.7474732629828232,
+      0.11855661526639036,
+      -0.04756412026872876
+    ],
+    [
+      -0.02819020526057658,
+      0.13249696539574385,
+      0.9907824516432885,
+      0.10340439577421248
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_right_handed_table_from_projection_psm_base": [
+    [
+      -0.7484778133790785,
+      -0.652917867772344,
+      0.11610004660974013,
+      0.09912317013245345
+    ],
+    [
+      0.6631587272864436,
+      -0.7365973894699909,
+      0.13283368641246146,
+      -0.048957919473012194
+    ],
+    [
+      -0.0012104960506855748,
+      0.17641582629669342,
+      0.9843149856257223,
+      0.09897412545100431
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ]
+}

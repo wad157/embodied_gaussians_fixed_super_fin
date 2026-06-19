@@ -1,0 +1,74 @@
+{
+  "source": "dVRK Classic PSM1 xacro mimic tags",
+  "input_joint_names": [
+    "outer_yaw",
+    "outer_pitch",
+    "outer_insertion",
+    "outer_roll",
+    "outer_wrist_pitch",
+    "outer_wrist_yaw",
+    "jaw"
+  ],
+  "input_to_urdf_joint": {
+    "outer_yaw": "yaw",
+    "outer_pitch": "pitch",
+    "outer_insertion": "insertion",
+    "outer_roll": "roll",
+    "outer_wrist_pitch": "wrist_pitch",
+    "outer_wrist_yaw": "wrist_yaw",
+    "jaw": "jaw"
+  },
+  "mimic": {
+    "pitch_1": {
+      "source": "pitch",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    "pitch_2": {
+      "source": "pitch",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    "pitch_3": {
+      "source": "pitch",
+      "multiplier": -1.0,
+      "offset": 0.0
+    },
+    "pitch_4": {
+      "source": "pitch",
+      "multiplier": -1.0,
+      "offset": 0.0
+    },
+    "pitch_5": {
+      "source": "pitch",
+      "multiplier": 1.0,
+      "offset": 0.0
+    },
+    "jaw_mimic_1": {
+      "source": "jaw",
+      "multiplier": 0.5,
+      "offset": 0.0
+    },
+    "jaw_mimic_2": {
+      "source": "jaw",
+      "multiplier": -0.5,
+      "offset": 0.0
+    }
+  },
+  "driven_joint_names_recommended_order": [
+    "yaw",
+    "pitch",
+    "insertion",
+    "roll",
+    "wrist_pitch",
+    "wrist_yaw",
+    "jaw",
+    "pitch_1",
+    "pitch_2",
+    "pitch_3",
+    "pitch_4",
+    "pitch_5",
+    "jaw_mimic_1",
+    "jaw_mimic_2"
+  ]
+}
